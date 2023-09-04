@@ -11,8 +11,8 @@ load_dotenv()
 
 db = connect_to_postgre_db(
     db_name=getenv('DB_NAME'),
-    db_user=getenv('DB_USER'),
-    db_password=getenv('DB_PASSWORD'),
+    db_user=getenv('POSTGRES_USER'),
+    db_password=getenv('POSTGRES_PASSWORD'),
     db_host=getenv('DB_HOST'),
     db_port=getenv('DB_PORT')
 )

@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  db:
+    image: postgres:13.0-alpine
+    volumes:
+      - db_volume:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
+
+  wcollector:
+    image: alexanderpai/wcollector:latest
+    restart: always
+    depends_on:
+      - db
+    env_file:
+      - ./.env
