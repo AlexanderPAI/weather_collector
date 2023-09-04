@@ -7,6 +7,7 @@ from requests import get
 
 from models import City, WeatherCall
 
+
 load_dotenv()
 
 
