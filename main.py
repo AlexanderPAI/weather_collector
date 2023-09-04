@@ -6,6 +6,7 @@ from methods import (check_or_import_cities_from_file_to_db,
                      get_weather_call)
 from models import City, WeatherCall
 
+
 basicConfig(
     level=ERROR,
     format='%(asctime)s %(levelname)s %(message)s'
