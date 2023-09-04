@@ -1,10 +1,11 @@
 from datetime import datetime
 from os import getenv
+
 from dotenv import load_dotenv
-from peewee import Model, CharField, DecimalField, ForeignKeyField, DateTimeField
+from peewee import (CharField, DateTimeField, DecimalField, ForeignKeyField,
+                    Model)
 
-from connect_db import connect_to_postgre_db, connect_to_sqlite_db
-
+from connect_db import connect_to_postgre_db
 
 load_dotenv()
 

@@ -1,11 +1,11 @@
-from os import getenv
-from requests import get
-from json import loads
 from csv import DictReader
+from json import loads
+from os import getenv
+
 from dotenv import load_dotenv
+from requests import get
 
 from models import City, WeatherCall
-
 
 load_dotenv()
 
@@ -30,9 +30,9 @@ def check_or_import_cities_from_file_to_db(file, model=City):
     cities_list_from_file = []
     cities_to_create = []
     cities_to_delete = []
-
+    url = 'http://api.openweathermap.org/geo/1.0/'
     for row in DictReader(open(file)):
-        api_url = f'http://api.openweathermap.org/geo/1.0/direct?q={row["name"]}&&appid={getenv("API_KEY")}'
+        api_url = f'{url}direct?q={row["name"]}&&appid={getenv("API_KEY")}'
         response = get(api_url)
         response = loads(response.text)[0]
         cities_list_from_file.append(
@@ -49,7 +49,7 @@ def check_or_import_cities_from_file_to_db(file, model=City):
             if city.name == city_in_db.name:
                 city_exist = True
                 break
-        if city_exist == False:
+        if not city_exist:
             cities_to_create.append(city)
 
     for city_in_db in cities_in_db:
@@ -76,9 +76,10 @@ def get_weather_call(cities_list: list, model=WeatherCall):
     в качестве параметра.
     """
     weather_call_result = []
+    url = 'https://api.openweathermap.org/data/2.5/weather?'
     for city in cities_list:
-        url = f'https://api.openweathermap.org/data/2.5/weather?lat={city.lat}&lon={city.lon}&appid={getenv("API_KEY")}'
-        response = get(url)
+        api_url = f'{url}lat={city.lat}&lon={city.lon}&appid={getenv("API_KEY")}'
+        response = get(api_url)
         response = loads(response.text)
         weather_call_result.append(
             model(
