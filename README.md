@@ -78,7 +78,25 @@ git clone git@github.com:AlexanderPAI/weather_collector.git
 
 3. Создать базу данных PostgresSQL через pgAdmin или иную СУБД 
 
-4. В корневом каталоге приложения создать файл переменных окружения `*.env`.  
+
+4. Создать и активировать виртуальное окружение
+```bash
+# для PowerShell на Windows
+python -m venv venv
+venv/Script/activate.bat
+
+# для Bash на Ubuntu
+python -m venv venv
+source venv/bin/activate
+```
+
+5. Установить зависимости:
+```bash
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+6. В корневом каталоге приложения создать файл переменных окружения `*.env`.  
 Пример `*.env`:
 ```
 API_KEY=[API_KEY из личного кабинета https://openweathermap.org/api]
@@ -91,12 +109,12 @@ PORT=5432
 **!!! DB_HOST обязательно должен быть localhost, иначе приложение не сможет подключиться к БД !!!**
 
 
-5. В корневом каталоге приложения запустить `main.py`: 
+7. В корневом каталоге приложения запустить `main.py`: 
 ```bash
 python main.py
 ```
 
-6. Приложение совершит действия, указанные в разделе "Как работает приложение?" и начнет собирать данные в соответствующую подключенную БД, указанную в `*.env`.
+8. Приложение совершит действия, указанные в разделе "Как работает приложение?" и начнет собирать данные в соответствующую подключенную БД, указанную в `*.env`.
 ___
 ## Локальный запуск (с использованием SQLite для тестирования)
 
@@ -108,7 +126,24 @@ ___
 git clone git@github.com:AlexanderPAI/weather_collector.git
 ```
 
-3. В `models.py`:
+3. Создать и активировать виртуальное окружение
+```bash
+# для PowerShell на Windows
+python -m venv venv
+venv/Script/activate.bat
+
+# для Bash на Ubuntu
+python -m venv venv
+source venv/bin/activate
+```
+
+4. Установить зависимости:
+```bash
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+5. В `models.py`:
 ```python
 # строку
 from connect_db import connect_to_postgre_db
@@ -127,14 +162,14 @@ db = connect_to_postgre_db(
 db = connect_to_sqlite_db()
 ```
 
-4. В корневом каталоге приложения создать файл переменных окружения `*.env`.  
+6. В корневом каталоге приложения создать файл переменных окружения `*.env`.  
 Пример `*.env`:
 ```
 API_KEY=[API_KEY из личного кабинета https://openweathermap.org/api]
 ``` 
-5. В корневом каталоге приложения запустить `main.py`: 
+7. В корневом каталоге приложения запустить `main.py`: 
 ```bash
 python main.py
 ```
 
-6. Приложение совершит действия, указанные в разделе "Как работает приложение?" и начнет собирать данные в базу данных wcollector.db в корневом каталоге приложения.
+8. Приложение совершит действия, указанные в разделе "Как работает приложение?" и начнет собирать данные в базу данных wcollector.db в корневом каталоге приложения.
